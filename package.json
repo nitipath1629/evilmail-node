@@ -1,0 +1,73 @@
+{
+  "name": "evilmail",
+  "version": "1.0.0",
+  "description": "Official Node.js SDK for the EvilMail API — Disposable temp email, email verification codes, inbox management, custom domain email",
+  "author": "EvilMail <support@evilmail.pro> (https://evilmail.pro)",
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/index.d.cts",
+        "default": "./dist/cjs/index.cjs"
+      }
+    }
+  },
+  "main": "./dist/cjs/index.cjs",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "npm run build:esm && npm run build:cjs",
+    "build:esm": "tsc -p tsconfig.esm.json",
+    "build:cjs": "tsc -p tsconfig.cjs.json && node scripts/rename-cjs.js",
+    "clean": "rm -rf dist",
+    "prepublishOnly": "npm run clean && npm run build",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.0",
+    "typescript": "^5.4.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "evilmail",
+    "email",
+    "email-api",
+    "sdk",
+    "temp-email",
+    "temporary-email",
+    "disposable-email",
+    "anonymous-email",
+    "email-verification",
+    "otp",
+    "verification-code",
+    "inbox",
+    "email-client",
+    "custom-domain-email",
+    "random-email",
+    "privacy",
+    "api-client",
+    "mail",
+    "nodejs",
+    "typescript"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Evil-Mail/evilmail-node.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Evil-Mail/evilmail-node/issues"
+  },
+  "homepage": "https://evilmail.pro"
+}
